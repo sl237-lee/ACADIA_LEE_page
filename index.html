@@ -18,19 +18,16 @@
       margin:0;padding:0;color:var(--text);
       font-family:"Poppins",sans-serif;font-weight:300;
       background:radial-gradient(circle at top left,var(--bg2) 0%,var(--bg1) 100%);
-      min-height:100vh;overflow-x:hidden;position:relative;
+      overflow-x:hidden;position:relative;
     }
-    /* Floating gradient background dots */
     body::before {
       content:"";position:fixed;top:0;left:0;width:100%;height:100%;
-      background:radial-gradient(circle at 20% 20%,rgba(114,210,255,0.15),transparent 40%),
+      background:radial-gradient(circle at 25% 25%,rgba(114,210,255,0.15),transparent 40%),
                  radial-gradient(circle at 80% 60%,rgba(255,255,255,0.08),transparent 40%);
-      animation:floatBg 15s infinite alternate ease-in-out;
+      animation:floatBg 18s infinite alternate ease-in-out;
       z-index:-1;
     }
-    @keyframes floatBg {
-      0%{transform:translate(0,0);}100%{transform:translate(20px,20px);}
-    }
+    @keyframes floatBg {0%{transform:translate(0,0);}100%{transform:translate(25px,20px);}}
 
     header {
       display:flex;align-items:center;gap:24px;
@@ -58,7 +55,6 @@
     }
     .panel.visible {opacity:1;transform:translateY(0);}
     h2 {color:var(--accent);font-family:"DM Serif Display",serif;font-size:1.7rem;margin-bottom:10px;}
-
     p {line-height:1.8;max-width:760px;margin:0 auto 1.2em;}
 
     .btn {
@@ -68,34 +64,34 @@
     }
     .btn:hover {transform:translateY(-2px);box-shadow:0 6px 16px rgba(114,210,255,.4);}
 
-    /* Gallery */
-    .gallery-column {
-      display:flex;flex-direction:column;align-items:center;gap:30px;margin-top:30px;
+    /* 2-column gallery */
+    .gallery-grid {
+      display:grid;grid-template-columns:repeat(2,1fr);
+      gap:24px;margin-top:30px;justify-items:center;
     }
     .img-card {
-      position:relative;overflow:hidden;border-radius:18px;max-width:680px;width:90%;
-      box-shadow:0 12px 30px rgba(0,0,0,.4);
+      position:relative;overflow:hidden;border-radius:18px;width:100%;
+      max-width:420px;box-shadow:0 10px 30px rgba(0,0,0,.4);
       transition:transform .4s ease, box-shadow .4s ease;
     }
-    .img-card:hover {transform:scale(1.03) translateY(-6px);box-shadow:0 20px 50px rgba(114,210,255,.3);}
+    .img-card:hover {transform:scale(1.03) translateY(-4px);box-shadow:0 20px 50px rgba(114,210,255,.3);}
     .img-card img {width:100%;display:block;border-radius:18px;filter:brightness(0.9);transition:filter .4s ease;}
     .img-card:hover img {filter:brightness(1);}
     .img-desc {
-      position:absolute;bottom:0;left:0;width:100%;padding:16px;
+      position:absolute;bottom:0;left:0;width:100%;padding:14px;
       background:linear-gradient(to top,rgba(0,0,0,0.8),transparent);
-      color:#fff;font-size:15px;opacity:0;transform:translateY(20px);
+      color:#fff;font-size:14px;opacity:0;transform:translateY(20px);
       transition:opacity .4s ease, transform .4s ease;
     }
     .img-card:hover .img-desc {opacity:1;transform:translateY(0);}
+    @media(max-width:750px){.gallery-grid{grid-template-columns:1fr;}}
 
     footer {text-align:center;color:var(--muted);font-size:14px;margin-top:60px;}
 
-    /* Lightbox */
     .lightbox {
       position:fixed;inset:0;background:rgba(0,0,0,.9);
       display:flex;align-items:center;justify-content:center;
-      opacity:0;pointer-events:none;transition:opacity .3s ease;
-      z-index:20;
+      opacity:0;pointer-events:none;transition:opacity .3s ease;z-index:20;
     }
     .lightbox img {max-width:90%;max-height:90%;border-radius:16px;box-shadow:0 0 50px rgba(255,255,255,.15);}
     .lightbox.show {opacity:1;pointer-events:auto;}
@@ -131,62 +127,62 @@
     <section class="panel" id="intro">
       <h2>About Me</h2>
       <p>
-        I’m a Chemistry undergraduate at Case Western Reserve University passionate about <strong>material synthesis</strong>—exploring
-        how structure, color, and composition interact to create new forms of matter. My creativity extends beyond the lab: through
-        <em>painting</em> and <em>cooking</em>, I reinterpret the chemistry of transformation into tangible, visual, and sensory art.
+        I’m a Chemistry undergraduate at Case Western Reserve University passionate about <strong>material synthesis</strong>—
+        exploring how structure, color, and composition interact to create new matter. Beyond the lab, through <em>painting</em> and
+        <em>cooking</em>, I transform the science of materials into visual and sensory design.
       </p>
     </section>
 
     <section class="panel" id="research">
       <h2>Research & Academic Focus</h2>
       <p>
-        My research examines <strong>formamidine-rich perovskites</strong> and <strong>inorganic nanomaterials</strong>, with a focus on
-        ligand passivation and stability. I’m drawn to the parallel between synthesis and creation—the precise layering of molecules
-        and pigments, energy and flavor.
+        My work focuses on <strong>formamidine-rich perovskites</strong> and <strong>inorganic nanomaterials</strong>, investigating
+        how ligand interactions influence structural stability and optical properties. Each synthesis echoes the artistic process:
+        layering, reacting, and transforming.
       </p>
     </section>
 
     <section class="panel" id="art">
       <h2>Art Gallery</h2>
-      <p>Explorations of texture, structure, and motion — each piece mirrors a scientific concept through visual abstraction.</p>
-      <div class="gallery-column">
-        <div class="img-card"><img src="assets/art/art1.jpg" alt=""><div class="img-desc">Blue Diffusion — crystalline light scattering study.</div></div>
-        <div class="img-card"><img src="assets/art/art2.jpg" alt=""><div class="img-desc">Organic Flow — gradient transitions inspired by molecular motion.</div></div>
-        <div class="img-card"><img src="assets/art/art3.jpg" alt=""><div class="img-desc">Phase Shift — geometric abstraction of equilibrium.</div></div>
-        <div class="img-card"><img src="assets/art/art4.jpg" alt=""><div class="img-desc">Turbulence — pigment layering and energy flow.</div></div>
-        <div class="img-card"><img src="assets/art/art5.jpg" alt=""><div class="img-desc">Entropy — spontaneous diffusion in color form.</div></div>
-        <div class="img-card"><img src="assets/art/art6.jpg" alt=""><div class="img-desc">Reaction Path — controlled chaos of interacting tones.</div></div>
-        <div class="img-card"><img src="assets/art/art7.jpg" alt=""><div class="img-desc">Crystalline Order — inspired by perovskite lattices.</div></div>
-        <div class="img-card"><img src="assets/art/art8.jpg" alt=""><div class="img-desc">Resonance — visual rhythm from spectroscopic patterns.</div></div>
-        <div class="img-card"><img src="assets/art/art9.jpg" alt=""><div class="img-desc">Energy State — expression of heat and transformation.</div></div>
-        <div class="img-card"><img src="assets/art/art10.jpg" alt=""><div class="img-desc">Catalyst — abstracted activation energy landscapes.</div></div>
-        <div class="img-card"><img src="assets/art/art11.jpg" alt=""><div class="img-desc">Precipitation — watercolor layers as phase change.</div></div>
-        <div class="img-card"><img src="assets/art/art12.jpg" alt=""><div class="img-desc">Formamide Dreams — inspired by lab synthesis colors.</div></div>
+      <p>Visual explorations of chemical harmony — pigment, texture, and light behaving like atoms in flux.</p>
+      <div class="gallery-grid">
+        <div class="img-card"><img src="assets/art/art1.jpg"><div class="img-desc">Blue Diffusion — crystalline light scattering study.</div></div>
+        <div class="img-card"><img src="assets/art/art2.jpg"><div class="img-desc">Organic Flow — gradient transitions inspired by molecular motion.</div></div>
+        <div class="img-card"><img src="assets/art/art3.jpg"><div class="img-desc">Phase Shift — geometric abstraction of equilibrium.</div></div>
+        <div class="img-card"><img src="assets/art/art4.jpg"><div class="img-desc">Turbulence — pigment layering and energy flow.</div></div>
+        <div class="img-card"><img src="assets/art/art5.jpg"><div class="img-desc">Entropy — spontaneous diffusion in color form.</div></div>
+        <div class="img-card"><img src="assets/art/art6.jpg"><div class="img-desc">Reaction Path — controlled chaos of interacting tones.</div></div>
+        <div class="img-card"><img src="assets/art/art7.jpg"><div class="img-desc">Crystalline Order — inspired by perovskite lattices.</div></div>
+        <div class="img-card"><img src="assets/art/art8.jpg"><div class="img-desc">Resonance — visual rhythm from spectroscopic patterns.</div></div>
+        <div class="img-card"><img src="assets/art/art9.jpg"><div class="img-desc">Energy State — expression of heat and transformation.</div></div>
+        <div class="img-card"><img src="assets/art/art10.jpg"><div class="img-desc">Catalyst — abstracted activation energy landscapes.</div></div>
+        <div class="img-card"><img src="assets/art/art11.jpg"><div class="img-desc">Precipitation — watercolor layers as phase change.</div></div>
+        <div class="img-card"><img src="assets/art/art12.jpg"><div class="img-desc">Formamide Dreams — inspired by lab synthesis colors.</div></div>
       </div>
     </section>
 
     <section class="panel" id="cooking">
       <h2>Culinary Experiments</h2>
-      <p>Cooking as an experiment in texture, phase, and aesthetics — translating chemistry into taste and form.</p>
-      <div class="gallery-column">
-        <div class="img-card"><img src="assets/cooking/cook1.jpg" alt=""><div class="img-desc">Lemon Pavlova — sugar crystallization and foam stability.</div></div>
-        <div class="img-card"><img src="assets/cooking/cook2.jpg" alt=""><div class="img-desc">Matcha Soufflé — precise heat and structure control.</div></div>
-        <div class="img-card"><img src="assets/cooking/cook3.jpg" alt=""><div class="img-desc">Umami Layers — Maillard reaction in savory art.</div></div>
-        <div class="img-card"><img src="assets/cooking/cook4.jpg" alt=""><div class="img-desc">Crème Brûlée — sugar glass transition surface.</div></div>
-        <div class="img-card"><img src="assets/cooking/cook5.jpg" alt=""><div class="img-desc">Berry Matrix — diffusion-inspired dessert design.</div></div>
-        <div class="img-card"><img src="assets/cooking/cook6.jpg" alt=""><div class="img-desc">Meringue Fusion — air incorporation and elasticity.</div></div>
-        <div class="img-card"><img src="assets/cooking/cook7.jpg" alt=""><div class="img-desc">Chocolate Bloom — lipid crystal growth control.</div></div>
-        <div class="img-card"><img src="assets/cooking/cook8.jpg" alt=""><div class="img-desc">Aromatic Reduction — visual metaphor for concentration.</div></div>
-        <div class="img-card"><img src="assets/cooking/cook9.jpg" alt=""><div class="img-desc">Gradient Tart — pigment diffusion through fruit glazes.</div></div>
-        <div class="img-card"><img src="assets/cooking/cook10.jpg" alt=""><div class="img-desc">Molten Core Cake — edible phase transition.</div></div>
+      <p>Cooking as a live experiment — temperature, structure, and diffusion creating taste as chemistry’s expression.</p>
+      <div class="gallery-grid">
+        <div class="img-card"><img src="assets/cooking/cook1.jpg"><div class="img-desc">Lemon Pavlova — sugar crystallization and foam stability.</div></div>
+        <div class="img-card"><img src="assets/cooking/cook2.jpg"><div class="img-desc">Matcha Soufflé — precise heat and structure control.</div></div>
+        <div class="img-card"><img src="assets/cooking/cook3.jpg"><div class="img-desc">Umami Layers — Maillard reaction in savory art.</div></div>
+        <div class="img-card"><img src="assets/cooking/cook4.jpg"><div class="img-desc">Crème Brûlée — sugar glass transition surface.</div></div>
+        <div class="img-card"><img src="assets/cooking/cook5.jpg"><div class="img-desc">Berry Matrix — diffusion-inspired dessert design.</div></div>
+        <div class="img-card"><img src="assets/cooking/cook6.jpg"><div class="img-desc">Meringue Fusion — air incorporation and elasticity.</div></div>
+        <div class="img-card"><img src="assets/cooking/cook7.jpg"><div class="img-desc">Chocolate Bloom — lipid crystal growth control.</div></div>
+        <div class="img-card"><img src="assets/cooking/cook8.jpg"><div class="img-desc">Aromatic Reduction — visual metaphor for concentration.</div></div>
+        <div class="img-card"><img src="assets/cooking/cook9.jpg"><div class="img-desc">Gradient Tart — pigment diffusion through fruit glazes.</div></div>
+        <div class="img-card"><img src="assets/cooking/cook10.jpg"><div class="img-desc">Molten Core Cake — edible phase transition.</div></div>
       </div>
     </section>
 
     <section class="panel" id="connection" style="text-align:center;">
       <h2>Connecting Science & Art</h2>
       <p>
-        From the lab bench to the kitchen to the canvas, I’m drawn to how structure and energy shape beauty.
-        My work blurs the line between experiment and expression — each one a synthesis of curiosity and design.
+        From lattice structures to layered desserts, I explore how chemistry and creativity converge.  
+        Every reaction, brushstroke, and flavor is part of a single process: **transforming materials into meaning**.
       </p>
       <p>
         <a href="mailto:asl127@case.edu" class="btn">Email Me</a>
@@ -194,26 +190,21 @@
       </p>
     </section>
 
-    <footer>© 2025 Acadia Lee · Designed with passion & precision · GitHub Pages</footer>
+    <footer>© 2025 Acadia Lee · Designed with precision & curiosity · GitHub Pages</footer>
   </div>
 
-  <div class="lightbox" id="lightbox"><img src="" alt="Expanded"></div>
+  <div class="lightbox" id="lightbox"><img src="" alt=""></div>
 
   <script>
-    // scroll reveal
     const observer=new IntersectionObserver(entries=>{
       entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
     },{threshold:0.15});
     document.querySelectorAll('.panel').forEach(s=>observer.observe(s));
 
-    // lightbox
     const lightbox=document.getElementById('lightbox');
     const lightImg=lightbox.querySelector('img');
     document.querySelectorAll('.img-card img').forEach(img=>{
-      img.addEventListener('click',()=>{
-        lightImg.src=img.src;
-        lightbox.classList.add('show');
-      });
+      img.addEventListener('click',()=>{lightImg.src=img.src;lightbox.classList.add('show');});
     });
     lightbox.addEventListener('click',()=>lightbox.classList.remove('show'));
   </script>
