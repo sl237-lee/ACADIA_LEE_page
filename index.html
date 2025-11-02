@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Acadia Lee — Chemistry & Creative Synthesis</title>
+  <meta name="description" content="Acadia Lee — Chemistry major exploring material synthesis, art, and culinary creativity." />
+  <link rel="icon" href="assets/favicon.ico" />
+  <style>
+    :root{
+      --bg:#0e1117;--panel:#151a21;--muted:#b1bcc7;--text:#f5f7fa;--accent:#80d0ff;
+      --chip:#1c2330;--chip-brd:#2a384d;--btn:#1a2330;--brd:#263448;
+    }
+    html[data-theme="light"]{
+      --bg:#f9fafc;--panel:#ffffff;--muted:#5b6675;--text:#0e1726;--accent:#0ea5e9;
+      --chip:#edf2f7;--chip-brd:#d5dee9;--btn:#f1f6fb;--brd:#e5edf6;
+    }
+    body{
+      margin:0;padding:0;font:16px/1.7 "Inter",sans-serif;color:var(--text);
+      background:var(--bg) url("assets/bg.jpg") no-repeat center/cover fixed;
+    }
+    a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:.2s;}
+    a:hover{border-color:var(--accent);}
+    .container{max-width:960px;margin:0 auto;padding:32px 20px 64px;}
+    header{display:grid;grid-template-columns:120px 1fr;gap:20px;align-items:center;margin-bottom:30px;}
+    .avatar{width:120px;height:120px;border-radius:20px;background:linear-gradient(135deg,#6bbcff,#0e1726);
+      display:flex;align-items:center;justify-content:center;color:#fff;font-size:40px;}
+    html[data-theme="light"] .avatar{background:linear-gradient(135deg,#a5d8ff,#0ea5e9);color:#082f49;}
+    h1{margin:0;font-size:2.25rem;font-weight:700;}
+    h2{font-size:1.35rem;color:var(--accent);margin:0 0 12px;}
+    p{max-width:800px;margin:0 auto 1em;}
+    .panel{background:var(--panel);border:1px solid var(--brd);border-left:4px solid var(--accent);
+      border-radius:12px;padding:24px 20px;margin-bottom:24px;box-shadow:0 10px 25px rgba(0,0,0,.12);}
+    .chip{border:1px solid var(--chip-brd);background:var(--chip);padding:6px 12px;border-radius:999px;
+      font-size:14px;color:var(--muted);margin:4px;display:inline-block;}
+    .chip:hover{color:var(--text);transform:scale(1.05);}
+    .grid{display:grid;gap:12px;}
+    img.gallery{width:100%;border-radius:12px;margin-top:12px;}
+    .btn{display:inline-block;padding:10px 16px;border-radius:10px;border:1px solid var(--brd);
+      background:var(--btn);color:var(--text);margin:6px;transition:filter .2s;}
+    .btn:hover{filter:brightness(.95);}
+    footer{text-align:center;font-size:14px;color:var(--muted);margin-top:40px;}
+    @media(max-width:700px){
+      header{grid-template-columns:84px 1fr}.avatar{width:84px;height:84px;font-size:28px;}
+      h1{font-size:28px;}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="avatar">AL</div>
+      <div>
+        <h1>Acadia Lee</h1>
+        <div class="tagline" style="color:var(--muted)">Chemistry · Material Synthesis · Creative Design</div>
+        <p>
+          <a href="mailto:asl127@case.edu">asl127@case.edu</a> ·
+          <a href="tel:+12163759013">+1 216-375-9013</a> ·
+          <span>Cleveland, OH</span>
+        </p>
+        <div>
+          <a href="assets/resume.pdf" class="btn" target="_blank">View Resume (PDF)</a>
+          <a href="#gallery" class="btn">Gallery</a>
+          <a href="#research" class="btn">Research</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="panel" id="intro">
+      <h2>About Me</h2>
+      <p>
+        I’m a Chemistry undergraduate at Case Western Reserve University passionate about <strong>material synthesis</strong>—
+        discovering how structure, color, and composition interact to create new matter. My curiosity extends beyond the lab:
+        in <em>painting</em> and <em>cooking</em>, I explore the same balance of form and transformation that defines chemical design.
+      </p>
+    </section>
+
+    <section class="panel" id="research">
+      <h2>Research & Academic Focus</h2>
+      <p>
+        My research centers on <strong>formamidine-rich perovskites</strong> and <strong>inorganic nano-materials</strong>, exploring ligand
+        interactions and stability optimization. Through projects at CWRU and Konkuk University, I’ve synthesized lead-free crystals,
+        analyzed absorption and emission peaks, and investigated structure–property relationships.
+      </p>
+      <div class="chips">
+        <span class="chip">Perovskite Synthesis</span><span class="chip">Nanocrystals</span>
+        <span class="chip">Optoelectronic Analysis</span><span class="chip">Spectroscopy</span>
+        <span class="chip">Material Characterization</span>
+      </div>
+    </section>
+
+    <section class="panel" id="gallery">
+      <h2>Art Gallery</h2>
+      <p>
+        Painting allows me to approach chemistry from another angle — mixing pigments and layering textures feels like a visual
+        analog to <em>material design</em>. Each piece reflects experimentation with color blending and reaction between elements.
+      </p>
+      <img src="assets/art/painting1.jpg" alt="Abstract painting 1" class="gallery" />
+      <img src="assets/art/painting2.jpg" alt="Abstract painting 2" class="gallery" />
+    </section>
+
+    <section class="panel" id="cooking">
+      <h2>Culinary Experiments</h2>
+      <p>
+        Cooking is my daily laboratory — where thermal reactions, emulsions, and crystallization reveal chemistry in motion.
+        From handmade pastries to molecular-inspired plating, I approach food with the same creative curiosity I bring to research.
+      </p>
+      <img src="assets/cooking/dish1.jpg" alt="Cooking 1" class="gallery" />
+      <img src="assets/cooking/dish2.jpg" alt="Cooking 2" class="gallery" />
+    </section>
+
+    <section class="panel" id="connection" style="text-align:center;">
+      <h2>Connecting Science & Art</h2>
+      <p>
+        Whether crafting a perovskite lattice or a layered dessert, the process is guided by the same question:
+        <strong>How can structure, energy, and beauty emerge from composition?</strong>
+      </p>
+      <p>
+        <a href="mailto:asl127@case.edu" class="btn">Email Me</a>
+        <a href="https://www.linkedin.com/" class="btn" target="_blank">LinkedIn</a>
+      </p>
+    </section>
+
+    <footer>© 2025 Acadia Lee. Built with plain HTML & CSS. Hosted on GitHub Pages.</footer>
+  </div>
+</body>
+</html>
