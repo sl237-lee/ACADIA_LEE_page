@@ -35,11 +35,19 @@
       font-size:14px;color:var(--muted);margin:4px;display:inline-block;}
     .chip:hover{color:var(--text);transform:scale(1.05);}
     .grid{display:grid;gap:12px;}
-    img.gallery{width:100%;border-radius:12px;margin-top:12px;}
+    .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-top:12px;}
+    .gallery-grid img{width:100%;border-radius:12px;cursor:pointer;transition:transform .2s ease, box-shadow .2s ease;}
+    .gallery-grid img:hover{transform:scale(1.03);box-shadow:0 6px 18px rgba(0,0,0,.3);}
     .btn{display:inline-block;padding:10px 16px;border-radius:10px;border:1px solid var(--brd);
       background:var(--btn);color:var(--text);margin:6px;transition:filter .2s;}
     .btn:hover{filter:brightness(.95);}
     footer{text-align:center;font-size:14px;color:var(--muted);margin-top:40px;}
+    /* Lightbox */
+    .lightbox{position:fixed;top:0;left:0;width:100%;height:100%;
+      background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;
+      opacity:0;pointer-events:none;transition:opacity .3s ease;}
+    .lightbox img{max-width:90%;max-height:85%;border-radius:12px;box-shadow:0 0 30px rgba(0,0,0,.8);}
+    .lightbox.show{opacity:1;pointer-events:auto;}
     @media(max-width:700px){
       header{grid-template-columns:84px 1fr}.avatar{width:84px;height:84px;font-size:28px;}
       h1{font-size:28px;}
@@ -60,7 +68,8 @@
         </p>
         <div>
           <a href="assets/resume.pdf" class="btn" target="_blank">View Resume (PDF)</a>
-          <a href="#gallery" class="btn">Gallery</a>
+          <a href="#gallery-art" class="btn">Art</a>
+          <a href="#gallery-cooking" class="btn">Cooking</a>
           <a href="#research" class="btn">Research</a>
         </div>
       </div>
@@ -89,24 +98,29 @@
       </div>
     </section>
 
-    <section class="panel" id="gallery">
-      <h2>Art Gallery</h2>
-      <p>
-        Painting allows me to approach chemistry from another angle — mixing pigments and layering textures feels like a visual
-        analog to <em>material design</em>. Each piece reflects experimentation with color blending and reaction between elements.
-      </p>
-      <img src="assets/art/painting1.jpg" alt="Abstract painting 1" class="gallery" />
-      <img src="assets/art/painting2.jpg" alt="Abstract painting 2" class="gallery" />
+    <section class="panel" id="gallery-art">
+      <h2>Art Gallery — 12 Works</h2>
+      <p>Painting allows me to explore chemistry visually — layering pigments and textures as analogs to crystalline growth and molecular order.</p>
+      <div class="gallery-grid">
+        <img src="assets/art/art1.jpg" alt="Art 1"><img src="assets/art/art2.jpg" alt="Art 2">
+        <img src="assets/art/art3.jpg" alt="Art 3"><img src="assets/art/art4.jpg" alt="Art 4">
+        <img src="assets/art/art5.jpg" alt="Art 5"><img src="assets/art/art6.jpg" alt="Art 6">
+        <img src="assets/art/art7.jpg" alt="Art 7"><img src="assets/art/art8.jpg" alt="Art 8">
+        <img src="assets/art/art9.jpg" alt="Art 9"><img src="assets/art/art10.jpg" alt="Art 10">
+        <img src="assets/art/art11.jpg" alt="Art 11"><img src="assets/art/art12.jpg" alt="Art 12">
+      </div>
     </section>
 
-    <section class="panel" id="cooking">
-      <h2>Culinary Experiments</h2>
-      <p>
-        Cooking is my daily laboratory — where thermal reactions, emulsions, and crystallization reveal chemistry in motion.
-        From handmade pastries to molecular-inspired plating, I approach food with the same creative curiosity I bring to research.
-      </p>
-      <img src="assets/cooking/dish1.jpg" alt="Cooking 1" class="gallery" />
-      <img src="assets/cooking/dish2.jpg" alt="Cooking 2" class="gallery" />
+    <section class="panel" id="gallery-cooking">
+      <h2>Culinary Experiments — 10 Creations</h2>
+      <p>Cooking is my daily laboratory. Thermal reactions, emulsions, and crystallization reveal chemistry through taste and design.</p>
+      <div class="gallery-grid">
+        <img src="assets/cooking/cook1.jpg" alt="Dish 1"><img src="assets/cooking/cook2.jpg" alt="Dish 2">
+        <img src="assets/cooking/cook3.jpg" alt="Dish 3"><img src="assets/cooking/cook4.jpg" alt="Dish 4">
+        <img src="assets/cooking/cook5.jpg" alt="Dish 5"><img src="assets/cooking/cook6.jpg" alt="Dish 6">
+        <img src="assets/cooking/cook7.jpg" alt="Dish 7"><img src="assets/cooking/cook8.jpg" alt="Dish 8">
+        <img src="assets/cooking/cook9.jpg" alt="Dish 9"><img src="assets/cooking/cook10.jpg" alt="Dish 10">
+      </div>
     </section>
 
     <section class="panel" id="connection" style="text-align:center;">
@@ -123,5 +137,19 @@
 
     <footer>© 2025 Acadia Lee. Built with plain HTML & CSS. Hosted on GitHub Pages.</footer>
   </div>
+
+  <div class="lightbox" id="lightbox"><img src="" alt="Expanded view"></div>
+
+  <script>
+    const lightbox=document.getElementById('lightbox');
+    const lightImg=lightbox.querySelector('img');
+    document.querySelectorAll('.gallery-grid img').forEach(img=>{
+      img.addEventListener('click',()=>{
+        lightImg.src=img.src;
+        lightbox.classList.add('show');
+      });
+    });
+    lightbox.addEventListener('click',()=>lightbox.classList.remove('show'));
+  </script>
 </body>
 </html>
