@@ -21,6 +21,46 @@
       overflow-x:hidden;position:relative;min-height:100vh;
     }
 
+    /* --- Always-visible captions (fix overflow) --- */
+    .img-card { 
+      display: flex; 
+      flex-direction: column; 
+    }
+    
+    /* Make the image corners round only on top; caption rounds the bottom */
+    .img-card img { 
+      border-radius: 18px 18px 0 0 !important; 
+    }
+    
+    /* Caption becomes a static card footer */
+    .img-desc {
+      position: static !important;
+      background: rgba(0,0,0,0.78);
+      color: #fff;
+      padding: 12px 14px;
+      line-height: 1.45;
+      font-size: 14px;
+      opacity: 1 !important;
+      transform: none !important;
+      border-bottom-left-radius: 18px;
+      border-bottom-right-radius: 18px;
+      backdrop-filter: none;
+      overflow-wrap: anywhere;     /* wrap long words */
+      word-break: normal;
+    }
+    
+    /* Keep hover effects on the image only */
+    .img-card:hover .img-desc { opacity: 1; transform: none; }
+    
+    /* Research results use a framed img; round only on top there too */
+    .gallery-grid.results .frame { 
+      border-radius: 18px 18px 0 0; 
+      overflow: hidden; 
+    }
+    .gallery-grid.results .frame img { 
+      border-radius: 18px 18px 0 0 !important; 
+    }
+
     /* Faded background image overlay */
     body::before {
       content:"";position:fixed;top:0;left:0;width:100%;height:100%;
@@ -284,18 +324,57 @@
 
     <section class="panel" id="cooking">
       <h2>Culinary Experiments</h2>
-      <p>Cooking as a live experiment — temperature, structure, and diffusion creating taste as chemistry’s expression.</p>
+      <p>Cooking as a live experiment — implementation of local ingredients to prepare for multi-cultural foods.</p>
       <div class="gallery-grid">
-        <div class="img-card"><img src="assets/cooking/cook1.jpg" alt="Cook 1"><div class="img-desc">Lemon Pavlova — sugar crystallization and foam stability.</div></div>
-        <div class="img-card"><img src="assets/cooking/cook2.jpg" alt="Cook 2"><div class="img-desc">Matcha Soufflé — precise heat and structure control.</div></div>
-        <div class="img-card"><img src="assets/cooking/cook3.jpg" alt="Cook 3"><div class="img-desc">Umami Layers — Maillard reaction in savory art.</div></div>
-        <div class="img-card"><img src="assets/cooking/cook4.jpg" alt="Cook 4"><div class="img-desc">Crème Brûlée — sugar glass transition surface.</div></div>
-        <div class="img-card"><img src="assets/cooking/cook5.jpg" alt="Cook 5"><div class="img-desc">Berry Matrix — diffusion-inspired dessert design.</div></div>
-        <div class="img-card"><img src="assets/cooking/cook6.jpg" alt="Cook 6"><div class="img-desc">Meringue Fusion — air incorporation and elasticity.</div></div>
-        <div class="img-card"><img src="assets/cooking/cook7.jpg" alt="Cook 7"><div class="img-desc">Chocolate Bloom — lipid crystal growth control.</div></div>
-        <div class="img-card"><img src="assets/cooking/cook8.jpg" alt="Cook 8"><div class="img-desc">Aromatic Reduction — visual metaphor for concentration.</div></div>
-        <div class="img-card"><img src="assets/cooking/cook9.jpg" alt="Cook 9"><div class="img-desc">Gradient Tart — pigment diffusion through fruit glazes.</div></div>
-        <div class="img-card"><img src="assets/cooking/cook10.jpg" alt="Cook 10"><div class="img-desc">Molten Core Cake — edible phase transition.</div></div>
+        <div class="img-card">
+          <img src="assets/cooking/cook1.jpg" alt="Korean cuisine: Tofu kimchi and seasoned pork">
+          <div class="img-desc">Korean cuisine — Tofu kimchi and seasoned pork.</div>
+        </div>
+    
+        <div class="img-card">
+          <img src="assets/cooking/cook2.jpg" alt="Japanese and French cuisine: Nasi goreng and ratatouille with breads and salad">
+          <div class="img-desc">Japanese / French cuisine — Nasi goreng and ratatouille, served with breads and salad.</div>
+        </div>
+    
+        <div class="img-card">
+          <img src="assets/cooking/cook3.jpg" alt="Fusion cuisine: Broccoli tofu with cheese and seasoned cucumber">
+          <div class="img-desc">Fusion cuisine — Broccoli tofu topped with cheese, served with seasoned cucumber.</div>
+        </div>
+    
+        <div class="img-card">
+          <img src="assets/cooking/cook4.jpg" alt="Korean and Japanese cuisine: Bibimguksu with pasta noodles, whole chicken stew, and sushi bake">
+          <div class="img-desc">Korean / Japanese cuisine — Bibimguksu with pasta noodles, whole chicken stew, and sushi bake.</div>
+        </div>
+    
+        <div class="img-card">
+          <img src="assets/cooking/cook5.jpg" alt="Korean cuisine: Ginseng chicken soup and seasoned acorn jelly from scratch with breads">
+          <div class="img-desc">Korean cuisine — Ginseng chicken soup and seasoned acorn jelly from scratch, served with breads.</div>
+        </div>
+    
+        <div class="img-card">
+          <img src="assets/cooking/cook6.jpg" alt="Korean cuisine: Grilled ground pork, meat altered with ground turkey beef, and egg stir fried rice">
+          <div class="img-desc">Korean cuisine — Grilled ground pork, meat altered with ground turkey beef, and egg stir fried rice.</div>
+        </div>
+    
+        <div class="img-card">
+          <img src="assets/cooking/cook7.jpg" alt="Japanese and Korean cuisine: Tartar beef, salmon and shrimp sashimi with rice">
+          <div class="img-desc">Japanese / Korean cuisine — Tartar beef, salmon and shrimp sashimi served with rice.</div>
+        </div>
+    
+        <div class="img-card">
+          <img src="assets/cooking/cook8.jpg" alt="Korean and Japanese cuisine: Tartar beef and cold buckwheat noodle altered with pasta noodle">
+          <div class="img-desc">Korean / Japanese cuisine — Tartar beef and cold buckwheat noodle, altered with pasta noodle.</div>
+        </div>
+    
+        <div class="img-card">
+          <img src="assets/cooking/cook9.jpg" alt="American and Korean cuisine: Steak and Jajang-myeon altered with pasta noodle with cucumber kimchi">
+          <div class="img-desc">American / Korean cuisine — Steak and Jajang-myeon, altered with pasta noodle, served with cucumber kimchi.</div>
+        </div>
+    
+        <div class="img-card">
+          <img src="assets/cooking/cook10.jpg" alt="Korean cuisine: Kimchi fried rice, grilled gizzard, seasoned acorn jelly, and shrimp sashimi">
+          <div class="img-desc">Korean cuisine — Kimchi fried rice, grilled gizzard, seasoned acorn jelly, and shrimp sashimi.</div>
+        </div>
       </div>
     </section>
 
