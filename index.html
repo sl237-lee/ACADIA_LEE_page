@@ -21,14 +21,14 @@
       overflow-x:hidden;position:relative;min-height:100vh;
     }
 
-    /* 🔹 Faded background image overlay */
+    /* Faded background image overlay */
     body::before {
       content:"";position:fixed;top:0;left:0;width:100%;height:100%;
       background:
         radial-gradient(circle at 25% 25%,rgba(114,210,255,0.15),transparent 40%),
         radial-gradient(circle at 80% 60%,rgba(255,255,255,0.08),transparent 40%),
         url("assets/bg.png") center/cover no-repeat;
-      opacity:0.5;           /* Fades the background image */
+      opacity:0.5;
       filter:blur(4px) brightness(0.8);
       animation:floatBg 20s infinite alternate ease-in-out;
       z-index:-1;
@@ -70,7 +70,7 @@
     }
     .btn:hover {transform:translateY(-2px);box-shadow:0 6px 16px rgba(114,210,255,.4);}
 
-    /* 2-column gallery */
+    /* Base gallery grid (used by Art and Cooking) */
     .gallery-grid {
       display:grid;grid-template-columns:repeat(2,1fr);
       gap:24px;margin-top:30px;justify-items:center;
@@ -90,7 +90,23 @@
       transition:opacity .4s ease, transform .4s ease;
     }
     .img-card:hover .img-desc {opacity:1;transform:translateY(0);}
-    @media(max-width:750px){.gallery-grid{grid-template-columns:1fr;}}
+
+    /* Research gallery layout overrides */
+    .gallery-grid.featured { grid-template-columns:repeat(2,1fr); }
+    .gallery-grid.results  { grid-template-columns:repeat(2,1fr); }
+    .gallery-grid.results .img-card { width:100%; max-width:none; }
+    .gallery-grid.results .frame {
+      position:relative; width:100%; aspect-ratio:4/3; overflow:hidden; border-radius:18px;
+    }
+    .gallery-grid.results .frame img {
+      width:100%; height:100%; object-fit:cover; border-radius:18px;
+    }
+
+    @media(max-width:750px){
+      .gallery-grid{grid-template-columns:1fr;}
+      .gallery-grid.featured,
+      .gallery-grid.results{grid-template-columns:1fr;}
+    }
 
     footer {text-align:center;color:var(--muted);font-size:14px;margin-top:60px;}
 
@@ -151,59 +167,67 @@
       </p>
     </section>
 
-    <!-- Insert directly AFTER the Research & Academic Focus section -->
+    <!-- Research Gallery -->
     <section class="panel" id="research-gallery">
       <h2>Research Gallery</h2>
       <p>
         Eight key images from my undergraduate work on formamidine rich perovskites and related nanomaterials.
       </p>
-    
-      <div class="gallery-grid">
-        <!-- 1. Research overview poster -->
+
+      <!-- Row 1: two featured items side by side -->
+      <div class="gallery-grid featured">
         <div class="img-card">
           <img src="assets/research/overview_poster.png" alt="Optimization of Formamidine Rich Perovskites via Ligand Passivation poster">
-          <div class="img-desc">Research overview poster showing objectives, method, spectra, and quantum yield results.</div>
+          <div class="img-desc">Research overview poster with objectives, method, spectra, and quantum yield results.</div>
         </div>
-    
-        <!-- 2. Presenter photo at the seminar or showcase -->
+
         <div class="img-card">
-          <img src="assets/research/seminar_photo.jpg" alt="Photo of Acadia Lee presenting the poster at the showcase">
-          <div class="img-desc">Presenting the work at the Summer Undergraduate Research Showcase.</div>
+          <img src="assets/research/seminar_photo.jpg" alt="Acadia Lee presenting the poster at the showcase">
+          <div class="img-desc">Presenting at the Summer Undergraduate Research Showcase.</div>
         </div>
-    
-        <!-- 3. Experiment result: FAPbBr3 nanocrystals (image A) -->
+      </div>
+
+      <!-- Rows 2–4: six result images, two per row, same size -->
+      <div class="gallery-grid results">
         <div class="img-card">
-          <img src="assets/research/exp_fapbbr3_nc_a.jpg" alt="Green emitting FAPbBr3 nanocrystals under UV light">
-          <div class="img-desc">Formamidine lead bromide nanocrystals, emission near 545 nm, quantum yield about 53 percent.</div>
+          <div class="frame">
+            <img src="assets/research/exp_fapbbr3_nc_a.jpg" alt="Green emitting FAPbBr3 nanocrystals under UV">
+          </div>
+          <div class="img-desc">FAPbBr3 nanocrystals, emission near 545 nm, quantum yield about 53 percent.</div>
         </div>
-    
-        <!-- 4. Experiment result: FAPbBr3 nanocrystals (image B) -->
+
         <div class="img-card">
-          <img src="assets/research/exp_fapbbr3_nc_b.jpg" alt="Cuvette view of green emitting FAPbBr3 nanocrystals">
-          <div class="img-desc">Second view of the same nanocrystals showing solution brightness and clarity.</div>
+          <div class="frame">
+            <img src="assets/research/exp_fapbbr3_nc_b.jpg" alt="Cuvette view of green emitting FAPbBr3 nanocrystals">
+          </div>
+          <div class="img-desc">Second view confirming solution brightness and clarity.</div>
         </div>
-    
-        <!-- 5. Experiment result: FAPbBr3 nano platelets (image A) -->
+
         <div class="img-card">
-          <img src="assets/research/exp_fapbbr3_np_a.jpg" alt="Blue emitting FAPbBr3 nano platelets under UV light">
-          <div class="img-desc">Ligand bound nano platelets, emission near 440 nm, quantum yield measured at 100 percent.</div>
+          <div class="frame">
+            <img src="assets/research/exp_fapbbr3_np_a.jpg" alt="Blue emitting FAPbBr3 nanoplatelets under UV">
+          </div>
+          <div class="img-desc">Ligand bound nanoplatelets, emission near 440 nm, quantum yield near 100 percent.</div>
         </div>
-    
-        <!-- 6. Experiment result: FAPbBr3 nano platelets (image B) -->
+
         <div class="img-card">
-          <img src="assets/research/exp_fapbbr3_np_b.jpg" alt="Cuvette view of blue emitting FAPbBr3 nano platelets">
-          <div class="img-desc">Second view highlighting platelet dispersion and surface passivation quality.</div>
+          <div class="frame">
+            <img src="assets/research/exp_fapbbr3_np_b.jpg" alt="Cuvette view of blue emitting FAPbBr3 nanoplatelets">
+          </div>
+          <div class="img-desc">Second view highlighting dispersion and passivation quality.</div>
         </div>
-    
-        <!-- 7. Experiment result: FAPbI3 nanocrystals (image A) -->
+
         <div class="img-card">
-          <img src="assets/research/exp_fapbi3_nc_a.jpg" alt="Red emitting FAPbI3 nanocrystals under UV light">
-          <div class="img-desc">Formamidine lead iodide nanocrystals, emission near 641 nm, quantum yield about 96 percent.</div>
+          <div class="frame">
+            <img src="assets/research/exp_fapbi3_nc_a.jpg" alt="Red emitting FAPbI3 nanocrystals under UV">
+          </div>
+          <div class="img-desc">FAPbI3 nanocrystals, emission near 641 nm, quantum yield about 96 percent.</div>
         </div>
-    
-        <!-- 8. Experiment result: FAPbI3 nanocrystals (image B) -->
+
         <div class="img-card">
-          <img src="assets/research/exp_fapbi3_nc_b.jpg" alt="Cuvette view of red emitting FAPbI3 nanocrystals">
+          <div class="frame">
+            <img src="assets/research/exp_fapbi3_nc_b.jpg" alt="Cuvette view of red emitting FAPbI3 nanocrystals">
+          </div>
           <div class="img-desc">Second view confirming uniform emission and low scattering.</div>
         </div>
       </div>
@@ -214,18 +238,18 @@
       <h2>Art Gallery</h2>
       <p>Visual explorations of chemical harmony — pigment, texture, and light behaving like atoms in flux.</p>
       <div class="gallery-grid">
-        <div class="img-card"><img src="assets/art/art1.jpg"><div class="img-desc">Blue Diffusion — crystalline light scattering study.</div></div>
-        <div class="img-card"><img src="assets/art/art2.jpg"><div class="img-desc">Organic Flow — gradient transitions inspired by molecular motion.</div></div>
-        <div class="img-card"><img src="assets/art/art3.jpg"><div class="img-desc">Phase Shift — geometric abstraction of equilibrium.</div></div>
-        <div class="img-card"><img src="assets/art/art4.jpg"><div class="img-desc">Turbulence — pigment layering and energy flow.</div></div>
-        <div class="img-card"><img src="assets/art/art5.jpg"><div class="img-desc">Entropy — spontaneous diffusion in color form.</div></div>
-        <div class="img-card"><img src="assets/art/art6.jpg"><div class="img-desc">Reaction Path — controlled chaos of interacting tones.</div></div>
-        <div class="img-card"><img src="assets/art/art7.jpg"><div class="img-desc">Crystalline Order — inspired by perovskite lattices.</div></div>
-        <div class="img-card"><img src="assets/art/art8.jpg"><div class="img-desc">Resonance — visual rhythm from spectroscopic patterns.</div></div>
-        <div class="img-card"><img src="assets/art/art9.jpg"><div class="img-desc">Energy State — expression of heat and transformation.</div></div>
-        <div class="img-card"><img src="assets/art/art10.jpg"><div class="img-desc">Catalyst — abstracted activation energy landscapes.</div></div>
-        <div class="img-card"><img src="assets/art/art11.jpg"><div class="img-desc">Precipitation — watercolor layers as phase change.</div></div>
-        <div class="img-card"><img src="assets/art/art12.jpg"><div class="img-desc">Formamide Dreams — inspired by lab synthesis colors.</div></div>
+        <div class="img-card"><img src="assets/art/art1.jpg" alt="Art 1"><div class="img-desc">Blue Diffusion — crystalline light scattering study.</div></div>
+        <div class="img-card"><img src="assets/art/art2.jpg" alt="Art 2"><div class="img-desc">Organic Flow — gradient transitions inspired by molecular motion.</div></div>
+        <div class="img-card"><img src="assets/art/art3.jpg" alt="Art 3"><div class="img-desc">Phase Shift — geometric abstraction of equilibrium.</div></div>
+        <div class="img-card"><img src="assets/art/art4.jpg" alt="Art 4"><div class="img-desc">Turbulence — pigment layering and energy flow.</div></div>
+        <div class="img-card"><img src="assets/art/art5.jpg" alt="Art 5"><div class="img-desc">Entropy — spontaneous diffusion in color form.</div></div>
+        <div class="img-card"><img src="assets/art/art6.jpg" alt="Art 6"><div class="img-desc">Reaction Path — controlled chaos of interacting tones.</div></div>
+        <div class="img-card"><img src="assets/art/art7.jpg" alt="Art 7"><div class="img-desc">Crystalline Order — inspired by perovskite lattices.</div></div>
+        <div class="img-card"><img src="assets/art/art8.jpg" alt="Art 8"><div class="img-desc">Resonance — visual rhythm from spectroscopic patterns.</div></div>
+        <div class="img-card"><img src="assets/art/art9.jpg" alt="Art 9"><div class="img-desc">Energy State — expression of heat and transformation.</div></div>
+        <div class="img-card"><img src="assets/art/art10.jpg" alt="Art 10"><div class="img-desc">Catalyst — abstracted activation energy landscapes.</div></div>
+        <div class="img-card"><img src="assets/art/art11.jpg" alt="Art 11"><div class="img-desc">Precipitation — watercolor layers as phase change.</div></div>
+        <div class="img-card"><img src="assets/art/art12.jpg" alt="Art 12"><div class="img-desc">Formamide Dreams — inspired by lab synthesis colors.</div></div>
       </div>
     </section>
 
@@ -233,16 +257,16 @@
       <h2>Culinary Experiments</h2>
       <p>Cooking as a live experiment — temperature, structure, and diffusion creating taste as chemistry’s expression.</p>
       <div class="gallery-grid">
-        <div class="img-card"><img src="assets/cooking/cook1.jpg"><div class="img-desc">Lemon Pavlova — sugar crystallization and foam stability.</div></div>
-        <div class="img-card"><img src="assets/cooking/cook2.jpg"><div class="img-desc">Matcha Soufflé — precise heat and structure control.</div></div>
-        <div class="img-card"><img src="assets/cooking/cook3.jpg"><div class="img-desc">Umami Layers — Maillard reaction in savory art.</div></div>
-        <div class="img-card"><img src="assets/cooking/cook4.jpg"><div class="img-desc">Crème Brûlée — sugar glass transition surface.</div></div>
-        <div class="img-card"><img src="assets/cooking/cook5.jpg"><div class="img-desc">Berry Matrix — diffusion-inspired dessert design.</div></div>
-        <div class="img-card"><img src="assets/cooking/cook6.jpg"><div class="img-desc">Meringue Fusion — air incorporation and elasticity.</div></div>
-        <div class="img-card"><img src="assets/cooking/cook7.jpg"><div class="img-desc">Chocolate Bloom — lipid crystal growth control.</div></div>
-        <div class="img-card"><img src="assets/cooking/cook8.jpg"><div class="img-desc">Aromatic Reduction — visual metaphor for concentration.</div></div>
-        <div class="img-card"><img src="assets/cooking/cook9.jpg"><div class="img-desc">Gradient Tart — pigment diffusion through fruit glazes.</div></div>
-        <div class="img-card"><img src="assets/cooking/cook10.jpg"><div class="img-desc">Molten Core Cake — edible phase transition.</div></div>
+        <div class="img-card"><img src="assets/cooking/cook1.jpg" alt="Cook 1"><div class="img-desc">Lemon Pavlova — sugar crystallization and foam stability.</div></div>
+        <div class="img-card"><img src="assets/cooking/cook2.jpg" alt="Cook 2"><div class="img-desc">Matcha Soufflé — precise heat and structure control.</div></div>
+        <div class="img-card"><img src="assets/cooking/cook3.jpg" alt="Cook 3"><div class="img-desc">Umami Layers — Maillard reaction in savory art.</div></div>
+        <div class="img-card"><img src="assets/cooking/cook4.jpg" alt="Cook 4"><div class="img-desc">Crème Brûlée — sugar glass transition surface.</div></div>
+        <div class="img-card"><img src="assets/cooking/cook5.jpg" alt="Cook 5"><div class="img-desc">Berry Matrix — diffusion-inspired dessert design.</div></div>
+        <div class="img-card"><img src="assets/cooking/cook6.jpg" alt="Cook 6"><div class="img-desc">Meringue Fusion — air incorporation and elasticity.</div></div>
+        <div class="img-card"><img src="assets/cooking/cook7.jpg" alt="Cook 7"><div class="img-desc">Chocolate Bloom — lipid crystal growth control.</div></div>
+        <div class="img-card"><img src="assets/cooking/cook8.jpg" alt="Cook 8"><div class="img-desc">Aromatic Reduction — visual metaphor for concentration.</div></div>
+        <div class="img-card"><img src="assets/cooking/cook9.jpg" alt="Cook 9"><div class="img-desc">Gradient Tart — pigment diffusion through fruit glazes.</div></div>
+        <div class="img-card"><img src="assets/cooking/cook10.jpg" alt="Cook 10"><div class="img-desc">Molten Core Cake — edible phase transition.</div></div>
       </div>
     </section>
 
@@ -250,11 +274,11 @@
       <h2>Connecting Science & Art</h2>
       <p>
         From lattice structures to layered desserts, I explore how chemistry and creativity converge.  
-        Every reaction, brushstroke, and flavor is part of a single process: **transforming materials into meaning**.
+        Every reaction, brushstroke, and flavor is part of a single process: <strong>transforming materials into meaning</strong>.
       </p>
       <p>
         <a href="mailto:asl127@case.edu" class="btn">Email Me</a>
-        <a href="https://www.linkedin.com/" class="btn" target="_blank">LinkedIn</a>
+        <a href="https://www.linkedin.com/" class="btn" target="_blank" rel="noopener">LinkedIn</a>
       </p>
     </section>
 
